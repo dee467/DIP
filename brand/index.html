@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dead Ideas Project Brand Guide</title>
+<meta name="theme-color" content="#1f4529">
+<link rel="icon" href="/brand/assets/dip-icon-black.png">
+<link rel="preload" href="/brand/assets/fonts/league-gothic-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"League Gothic";src:url(/brand/assets/fonts/league-gothic-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Caveat";src:url(/brand/assets/fonts/caveat-latin-600-normal.woff2) format("woff2");font-weight:500 600;font-display:swap}
+@font-face{font-family:"Caveat";src:url(/brand/assets/fonts/caveat-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Work Sans";src:url(/brand/assets/fonts/work-sans-latin-400-normal.woff2) format("woff2");font-weight:400 500;font-display:swap}
+@font-face{font-family:"Work Sans";src:url(/brand/assets/fonts/work-sans-latin-600-normal.woff2) format("woff2");font-weight:600 700;font-display:swap}
+:root{
+  --yew:#1f4529;--lichen:#a5ab8a;--shoot:#b5c15b;--parch:#f3eeea;--ink:#000;--rose:#9e4e4e;--paper:#fff;
+  --line:#e2dbd5;--muted:#5b5853;--stone:#e9e3dd;
+  --head:"League Gothic","Arial Narrow",sans-serif;
+  --script:"Soli Px","Caveat",cursive;
+  --body:"Canva Sans","Work Sans","Helvetica Neue",Arial,sans-serif;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--parch);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;line-height:.95;margin:0;letter-spacing:.005em}
+.it{font-family:var(--script);font-weight:600;display:block;letter-spacing:0;line-height:1.05}
+p{margin:0 0 1em}
+button,input,textarea,select{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.lbl{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+nav.top{position:sticky;top:0;z-index:50;background:var(--yew);color:var(--parch)}
+nav.top .wrap{display:flex;align-items:center;gap:22px;height:60px;overflow-x:auto;scrollbar-width:none}
+nav.top .wrap::-webkit-scrollbar{display:none}
+nav.top .brand{display:flex;align-items:center;gap:12px;margin-right:auto;white-space:nowrap}
+nav.top .brand img{height:42px;width:auto}
+nav.top .brand i{font-style:normal;font-weight:600;font-size:11px;letter-spacing:.1em;border:1px solid rgba(243,238,234,.4);border-radius:99px;padding:2px 10px}
+nav.top a{color:var(--parch);text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;opacity:.8}
+nav.top a:hover{opacity:1}
+nav.top a.cta{background:var(--shoot);color:var(--ink);padding:8px 16px;border-radius:99px;opacity:1}
+
+section{padding:100px 0;position:relative}
+.eyebrow{font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 4px 4px;border:1.5px solid currentColor;font-size:11px;letter-spacing:0}
+h2.big{font-size:clamp(58px,8vw,118px);margin-bottom:22px;line-height:.88}
+h2.big .it{color:var(--rose);font-size:.42em;margin-top:.1em}
+.dark h2.big .it{color:var(--shoot)}
+.lede{font-size:18px;max-width:660px;color:var(--muted)}
+.dark .lede{color:#cfd8cc}
+.grid{display:grid;gap:20px}
+.card{background:var(--paper);border-radius:var(--r);padding:26px;border:1px solid var(--line)}
+.card h4{font-size:34px;margin-bottom:8px}
+.card p.s{margin:0;font-size:14.5px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 12px;font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--ink);border-radius:99px;padding:10px 20px;font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;background:var(--ink);color:var(--parch);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.sm{padding:7px 14px;font-size:10.5px}
+.btn.shoot{background:var(--shoot);border-color:var(--shoot);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:default;transform:none}
+.btn svg{width:28px;height:10px}
+h3.sub{font-size:clamp(40px,4.4vw,56px);margin:72px 0 8px}
+h3.sub+p{color:var(--muted);max-width:660px}
+.underline{display:block;height:12px;width:min(320px,70%);margin-top:10px;background:var(--lichen);-webkit-mask:url(/brand/assets/stroke.png) center/100% 100% no-repeat;mask:url(/brand/assets/stroke.png) center/100% 100% no-repeat}
+
+/* hero */
+#start{background:var(--yew);color:var(--parch);padding:80px 0 90px;overflow:hidden}
+#start .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+#start h1{font-size:clamp(80px,11vw,150px);line-height:.86}
+#start h1 .it{color:var(--shoot);font-size:.36em;margin-top:.18em}
+#start .lede{color:#d4ddd1;font-size:19px;margin:26px 0 30px}
+.hero-art{display:grid;place-items:center}
+.hero-art img{width:100%;max-width:520px}
+.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.howto div{border:1px solid rgba(243,238,234,.22);border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.45;color:#d4ddd1}
+.howto b{display:block;font-family:var(--head);font-weight:400;font-size:26px;color:var(--parch);margin-bottom:2px}
+
+/* stages strip */
+.stages{background:var(--paper);border-bottom:1px solid var(--line)}
+.stages .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stage-s{padding:28px 22px;border-left:1px solid var(--line)}
+.stage-s:first-child{border-left:0;padding-left:0}
+.stage-s small{font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stage-s h4{font-size:44px;margin:4px 0 2px}
+.stage-s .it{font-size:26px}
+.stage-s p{font-size:13.5px;color:var(--muted);margin:6px 0 0;line-height:1.45}
+.stage-s i.bar{display:block;height:9px;width:110px;margin-top:10px;-webkit-mask:url(/brand/assets/stroke.png) center/100% 100% no-repeat;mask:url(/brand/assets/stroke.png) center/100% 100% no-repeat}
+
+/* logo */
+.logo-main{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-top:44px}
+.lstage{border-radius:var(--r);min-height:420px;display:grid;place-items:center;padding:40px;transition:background .3s;border:1px solid var(--line)}
+.lstage img{width:78%;max-width:470px}
+.flips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.flip{width:40px;height:40px;border-radius:50%;border:3px solid var(--paper);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.flip.on{box-shadow:0 0 0 3px var(--ink)}
+.dl-row{display:flex;gap:8px;flex-wrap:wrap}
+.variants{grid-template-columns:repeat(3,1fr);margin-top:20px}
+.variant{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.variant .art{height:220px;display:grid;place-items:center}
+.variant .art img{max-height:170px;max-width:72%}
+.variant .txt{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.variant h4{font-size:32px;margin:0}
+.files{grid-template-columns:repeat(3,1fr);margin-top:22px}
+.files .card:last-child{background:#efdcdc;border-color:transparent}
+.rules{grid-template-columns:1fr 1fr;margin-top:22px}
+.room-box{background:var(--parch);border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;padding:56px 40px;margin:12px 0 16px}
+.room-box .inner{outline:1.5px dashed var(--rose);outline-offset:26px;width:52%}
+.size-demo{display:flex;align-items:flex-end;gap:28px;margin:18px 0;flex-wrap:wrap}
+.size-demo div{text-align:center;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.4}
+.size-demo img{margin:0 auto 8px}
+.donts{grid-template-columns:repeat(4,1fr);margin-top:22px}
+.dont{padding:0;overflow:hidden}
+.dont .pic{height:170px;display:grid;place-items:center;position:relative;overflow:hidden}
+.dont .pic img{width:64%}
+.dont .pic::after{content:"";position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;background:var(--rose) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='white' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center/15px no-repeat}
+.dont p{padding:14px 16px;margin:0;font-size:14px;line-height:1.4;color:var(--muted)}
+.dont p b{font-family:var(--head);font-weight:400;display:block;font-size:26px;color:var(--ink);margin-bottom:2px;line-height:1}
+
+/* marks */
+#marks{background:var(--stone)}
+.details{grid-template-columns:repeat(3,1fr);margin-top:44px}
+.details .card{display:flex;flex-direction:column;gap:14px}
+.details .art{border-radius:12px;min-height:180px;display:grid;place-items:center;padding:18px;overflow:hidden}
+.tape{display:inline-block;background:var(--lichen);padding:4px 16px 2px;font-family:var(--script);font-weight:700;font-size:30px;line-height:1.1;transform:rotate(-2.5deg);clip-path:polygon(2% 8%,10% 0,30% 6%,52% 1%,75% 7%,98% 2%,100% 40%,97% 92%,80% 100%,55% 94%,30% 100%,8% 95%,0 60%)}
+.arch-demo{width:120px;height:160px;border:2px solid var(--ink);border-radius:60px 60px 0 0;border-bottom:0;position:relative}
+
+/* colour */
+.swatches{grid-template-columns:repeat(7,1fr);margin-top:44px;gap:12px}
+.sw{border-radius:var(--r);overflow:hidden;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column}
+.sw .chip{height:180px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-family:var(--head);font-size:30px;line-height:.95;cursor:pointer;position:relative}
+.sw .chip em{font-style:normal;font-family:var(--body);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.75;position:absolute;top:12px;left:14px}
+.sw dl{margin:0;padding:12px 14px 8px;font-size:12px;display:grid;grid-template-columns:auto 1fr;gap:3px 10px}
+.sw dt{font-weight:600;font-size:10px;letter-spacing:.1em;color:var(--muted);padding-top:2px}
+.sw dd{margin:0;font-variant-numeric:tabular-nums;cursor:pointer}
+.sw dd:hover{text-decoration:underline}
+.sw .role{font-size:12.5px;padding:0 14px 14px;color:var(--muted);line-height:1.4;margin-top:auto}
+.ratio{display:flex;border:1px solid var(--line);height:90px;border-radius:16px;overflow:hidden;margin:18px 0 8px}
+.ratio div{display:flex;align-items:flex-end;padding:10px 12px;font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;min-width:0}
+.strokes{grid-template-columns:repeat(3,1fr);margin-top:20px}
+.strokes .card{min-height:230px;display:flex;flex-direction:column;justify-content:space-between}
+.strokes h4{font-size:46px;line-height:.9}
+.strokes .underline{width:85%;height:14px}
+.pairs{grid-template-columns:repeat(4,1fr);margin-top:20px;gap:14px}
+.pair{border-radius:var(--r);padding:22px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}
+.pair h4{font-size:32px}
+.pair p{font-size:13.5px;line-height:1.4;margin:8px 0 0}
+.pair .verdict{align-self:flex-start;margin-top:14px;background:var(--paper);color:var(--ink)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,40px);opacity:0;background:var(--ink);color:var(--parch);font-weight:600;font-size:12px;letter-spacing:.08em;padding:11px 22px;border-radius:99px;transition:.25s;z-index:99;pointer-events:none}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* type */
+#type{background:var(--paper)}
+.typefaces{grid-template-columns:repeat(3,1fr);margin-top:44px}
+.face{background:var(--parch);border:0;padding:30px}
+.face .aa{font-size:128px;line-height:1;margin:10px 0 12px}
+.face h3{font-size:40px;margin-bottom:4px}
+.face .glyphs{font-size:19px;letter-spacing:.03em;word-break:break-word;color:var(--muted);line-height:1.5}
+.scale{margin-top:24px;border-top:1.5px solid var(--ink)}
+.scale .row{display:grid;grid-template-columns:150px 1fr 220px;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+.scale .row small{font-size:12px;color:var(--muted);line-height:1.45}
+.scale .row .l{font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.type-rules{grid-template-columns:repeat(4,1fr);margin-top:22px}
+.type-rules h4{font-size:30px}
+
+/* voice */
+#voice{background:var(--yew);color:var(--parch)}
+#voice .card{background:#183a21;border-color:#2b5135;color:var(--parch)}
+#voice .card p.s{color:#c5d0c2}
+.voice-grid{grid-template-columns:1fr 1fr;margin-top:44px;align-items:start}
+.sayit{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.sayit div{border-radius:12px;padding:11px 14px;font-size:14px;line-height:1.4}
+.sayit .yes{background:var(--shoot);color:var(--ink)}
+.sayit .no{background:rgba(243,238,234,.07);color:#b4c0b1;text-decoration:line-through;text-decoration-color:rgba(158,78,78,.95)}
+.sayit .h{font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:0 2px;background:none;color:var(--parch)}
+.traits{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.traits span{font-family:var(--head);font-size:34px;line-height:1;border:1px solid rgba(243,238,234,.3);border-radius:99px;padding:8px 20px 6px}
+.letter{background:var(--parch);color:var(--ink);border-radius:var(--r);overflow:hidden}
+.letter .bar{background:#0f2a17;color:var(--parch);padding:12px 20px;font-size:13px}
+.letter .bar b{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.letter .body{padding:24px 24px 28px;font-size:15.5px}
+.letter .body h5{font-family:var(--head);font-weight:400;font-size:46px;line-height:.92;margin:0 0 6px}
+.letter .body .it{font-size:26px;color:var(--rose);margin-bottom:14px}
+.lines{grid-template-columns:1fr 1fr;margin-top:12px}
+.lines .card{font-family:var(--head);font-size:40px;line-height:.92;border:0;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end}
+.lines .card .it{font-size:24px;margin-top:6px}
+.proof{border:1px solid rgba(243,238,234,.25);border-radius:var(--r);padding:22px 26px;margin-top:22px;display:flex;flex-wrap:wrap;gap:14px 30px;font-size:14.5px}
+.proof span{display:flex;align-items:center;gap:10px;max-width:320px;line-height:1.35}
+.proof i{width:12px;height:12px;border-radius:50% 50% 2px 2px;flex-shrink:0}
+
+/* illustrations */
+.ill-grid{grid-template-columns:repeat(4,1fr);margin-top:44px}
+.ill{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.ill .art{height:230px;display:grid;place-items:center;padding:18px;background:var(--paper);border-bottom:1px solid var(--line)}
+.ill .art{overflow:hidden}
+.ill .art img{width:100%;height:100%;object-fit:contain;min-height:0}
+.ill .txt{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ill h4{font-size:26px;margin:0}
+.ill p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.4;flex:1}
+.ill.lead{grid-column:span 2;grid-row:span 1}
+.img-grid{grid-template-columns:1fr 1fr;margin-top:22px}
+.okbad{list-style:none;padding:0;margin:10px 0 0}
+.okbad li{padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+.okbad li::before{content:"";position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%}
+.ok li::before{background:var(--yew) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b5c15b' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/13px no-repeat}
+.bad li::before{background:var(--rose) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='white' stroke-width='3.4' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center/12px no-repeat}
+.prompt{background:var(--ink);color:var(--parch);border-radius:var(--r);padding:26px 28px;margin-top:22px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.prompt code{font-family:ui-monospace,Menlo,monospace;font-size:13.5px;line-height:1.55;color:#e7e2dc;display:block}
+.prompt h4{font-size:30px;margin-bottom:6px}
+
+/* in use */
+#inuse{background:var(--stone)}
+.posts{grid-template-columns:repeat(3,1fr);margin-top:30px;gap:16px}
+.posts img{width:100%;aspect-ratio:1600/1048;object-fit:cover;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.08);cursor:zoom-in;transition:transform .15s;background:#fff}
+.posts img:hover{transform:translateY(-3px)}
+figure{margin:0}
+figcaption{margin-top:10px;font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.board{margin-top:20px}
+.board img{border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.1);cursor:zoom-in;background:#fff}
+.mocks{grid-template-columns:1.55fr 1fr 1fr;margin-top:20px;align-items:start}
+.mock canvas{width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 12px 30px rgba(0,0,0,.12)}
+.lightbox{position:fixed;inset:0;background:rgba(10,14,11,.9);display:none;place-items:center;z-index:200;padding:30px;cursor:zoom-out}
+.lightbox.show{display:grid}
+.lightbox img{max-height:92vh;max-width:92vw;border-radius:10px}
+
+/* maker */
+#make{background:var(--yew);color:var(--parch)}
+.brief{background:var(--parch);color:var(--ink);border-radius:var(--r);padding:30px;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+.brief h3{grid-column:1/-1;font-size:44px}
+.brief .hint{grid-column:1/-1;margin:-6px 0 0;color:var(--muted);font-size:14.5px}
+.f label{display:block;font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.f label span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted);font-size:12.5px}
+.f input[type=text],.f textarea,.f select{width:100%;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 12px;font-size:15px}
+.f input:focus,.f textarea:focus,.f select:focus{outline:none;border-color:var(--yew)}
+.f textarea{min-height:72px;resize:vertical}
+.f.full{grid-column:1/-1}
+.phpick{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.phpick button{width:68px;height:68px;border-radius:12px;border:2px solid var(--line);padding:4px;overflow:hidden;cursor:pointer;background:var(--paper)}
+.phpick button img{width:100%;height:100%;object-fit:contain}
+.phpick button.none{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+.phpick button.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--shoot)}
+.phpick label.up{width:68px;height:68px;border-radius:12px;border:2px dashed #c9c1b6;display:grid;place-items:center;text-align:center;font-size:9px;font-weight:600;letter-spacing:.08em;line-height:1.3;cursor:pointer;margin:0;text-transform:uppercase}
+.phpick input{display:none}
+.brief .go{grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.results{margin-top:30px;display:none}
+.results.show{display:block}
+.results .head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.results h3{font-size:44px}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.thumb{cursor:pointer;border-radius:12px;overflow:hidden;transition:transform .15s;background:transparent;border:0;padding:0}
+.thumb:hover{transform:translateY(-3px)}
+.thumb canvas{width:100%;height:auto;display:block;border-radius:10px}
+.thumb span{display:block;text-align:left;margin-top:8px;font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--parch)}
+.editor{display:none;margin-top:30px;background:var(--parch);color:var(--ink);border-radius:var(--r);overflow:hidden}
+.editor.show{display:grid;grid-template-columns:1fr 360px}
+.ed-stage{background:#ddd5cd;padding:28px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.ed-stage canvas{max-width:100%;max-height:74vh;width:auto;height:auto;border-radius:8px;box-shadow:0 12px 34px rgba(0,0,0,.18)}
+.ed-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center}
+.check{display:flex;flex-direction:column;gap:6px;width:100%;max-width:600px}
+.check div{font-size:13px;border-radius:10px;padding:8px 12px;line-height:1.35}
+.check .good{background:#e3e8c4}
+.check .fix{background:#efdcdc}
+.ed-panel{padding:22px;max-height:92vh;overflow:auto;border-left:1px solid var(--line)}
+.ed-panel h4{font-family:var(--body);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin:20px 0 8px;color:var(--muted)}
+.ed-panel h4:first-child{margin-top:0}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1.5px solid var(--line);background:var(--paper);border-radius:99px;padding:5px 12px;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--ink);border-color:var(--ink);color:var(--parch)}
+.cols{display:flex;gap:7px;flex-wrap:wrap}
+.cols button{width:34px;height:34px;border-radius:50%;border:3px solid var(--paper);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.cols button.on{box-shadow:0 0 0 3px var(--ink)}
+.ed-panel .f{margin-bottom:10px}
+.ed-panel .f textarea{min-height:56px}
+.ed-panel .rule{font-size:12px;color:var(--muted);line-height:1.4;margin-top:6px}
+footer{background:var(--ink);color:var(--parch);padding:46px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer img{height:70px;width:auto}
+
+@media (max-width:980px){
+  #start .wrap,.logo-main,.voice-grid,.img-grid,.rules,.editor.show,.prompt{grid-template-columns:1fr}
+  .swatches{grid-template-columns:repeat(4,1fr)}
+  .pairs,.donts,.type-rules,.details,.ill-grid,.stages .wrap,.posts{grid-template-columns:repeat(2,1fr)}
+  .stage-s:nth-child(3){border-left:0;padding-left:0}
+  .files,.typefaces,.howto,.strokes,.variants,.mocks{grid-template-columns:1fr}
+  .thumbs{grid-template-columns:repeat(2,1fr)}
+  .scale .row{grid-template-columns:1fr}
+  .ed-panel{border-left:0;border-top:1px solid var(--line);max-height:none}
+}
+@media (max-width:560px){
+  section{padding:72px 0}
+  .swatches{grid-template-columns:repeat(2,1fr)}
+  .brief,.details,.ill-grid,.posts,.lines,.stages .wrap{grid-template-columns:1fr}
+  .stage-s{border-left:0;padding-left:0;border-top:1px solid var(--line)}
+  .ill.lead{grid-column:auto}
+  .sayit div{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-arrow" viewBox="0 0 40 12"><path d="M0 6h37m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+
+<nav class="top"><div class="wrap">
+  <span class="brand"><img src="/brand/assets/dip-icon-reversed.png" alt="The DIP"><i>Brand guide v0.9</i></span>
+  <a href="#logos">Logo</a><a href="#marks">Marks</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#voice">Voice</a><a href="#illustration">Illustration</a><a href="#inuse">In use</a><a class="cta" href="#make">Make a header</a>
+</div></nav>
+
+<!-- START -->
+<section id="start" class="dark">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">The Dead Ideas Project brand guide</div>
+      <h1>No business plan needed.<span class="it">just a place for your ideas to exist.</span></h1>
+      <p class="lede">Everything you need to make The Dead Ideas Project look and sound like itself. Use it for Substack headers, Threads and Instagram posts, the Journal, merch and anything else with the crow on it.</p>
+      <div class="howto">
+        <div><b>Need the logo?</b>Grab the right file in Logo. Black for light backgrounds, reversed for dark.</div>
+        <div><b>New post going out?</b>Jump to Make a header. It only uses DIP fonts, colours and drawings.</div>
+        <div><b>Not sure?</b>When in doubt, make it look like the headers in In use.</div>
+      </div>
+    </div>
+    <div class="hero-art"><img src="/brand/assets/dip-logo-reversed.png" alt="The Dead Ideas Project logo, reversed"></div>
+  </div>
+</section>
+
+<div class="stages"><div class="wrap" id="stages"></div></div>
+
+<!-- LOGO -->
+<section id="logos">
+  <div class="wrap">
+    <div class="eyebrow"><b>01</b>Logo</div>
+    <h2 class="big">one crow,<span class="it">one resting place.</span></h2>
+    <p class="lede">The crow keeps watch on a fresh mound under the arch, with a new shoot coming up beside it. THE sits on a strip of tape, DEAD IDEAS in tall capitals, PROJECT in brush marker with a lichen underline. It always travels as one piece.</p>
+
+    <div class="logo-main">
+      <div class="lstage" id="logoStage" style="background:var(--parch)"><img id="stageLogo" src="/brand/assets/dip-logo-black.png" alt="The Dead Ideas Project primary logo"></div>
+      <div class="card">
+        <span class="pill" style="background:var(--shoot)">Primary logo</span>
+        <h3 style="font-size:46px;margin:14px 0 8px">The Dead Ideas Project</h3>
+        <p class="s">Use this almost everywhere: Substack, the website, the Journal cover, merch and anything big. Tap a background to see which version goes on it.</p>
+        <div class="flips" id="flips"></div>
+        <div class="dl-row">
+          <a class="btn sm" href="/brand/assets/dip-logo-black.png" download="dead-ideas-project-logo-black.png">PNG · Black</a>
+          <a class="btn sm ghost" href="/brand/assets/dip-logo-reversed.png" download="dead-ideas-project-logo-reversed.png">PNG · Reversed</a>
+          <button class="btn sm ghost" disabled title="Vector files are being drawn up">SVG · coming soon</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid variants">
+      <div class="card variant"><div class="art" style="background:var(--parch);border-bottom:1px solid var(--line)"><img src="/brand/assets/dip-icon-black.png" alt="The DIP mark"></div><div class="txt"><h4>The DIP</h4><p class="s">The short version. Top of every header, profile pictures, favicons, stickers and the spine of the Journal.</p><div class="dl-row"><a class="btn sm" href="/brand/assets/dip-icon-black.png" download="the-dip-black.png">PNG · Black</a><a class="btn sm ghost" href="/brand/assets/dip-icon-reversed.png" download="the-dip-reversed.png">PNG · Reversed</a></div></div></div>
+      <div class="card variant"><div class="art" style="background:var(--yew)"><img src="/brand/assets/dip-logo-reversed.png" alt="Reversed logo"></div><div class="txt"><h4>Reversed</h4><p class="s">Parchment crow and type on Yew Green or Ink. The tape and the shoot keep their colour.</p><div class="dl-row"><a class="btn sm ghost" href="/brand/assets/dip-logo-reversed.png" download="dead-ideas-project-logo-reversed.png">PNG · Reversed</a></div></div></div>
+      <div class="card variant"><div class="art" style="background:var(--ink)"><img src="/brand/assets/dip-icon-reversed.png" alt="The DIP reversed"></div><div class="txt"><h4>The DIP, reversed</h4><p class="s">For Threads and Instagram profile pictures on dark, and anything printed on black.</p><div class="dl-row"><a class="btn sm ghost" href="/brand/assets/dip-icon-reversed.png" download="the-dip-reversed.png">PNG · Reversed</a></div></div></div>
+    </div>
+
+    <h3 class="sub">Which file do I use?</h3>
+    <div class="grid files">
+      <div class="card"><h4>PNG</h4><p class="s">Substack, Canva, Instagram, Threads, emails and documents. See-through background, so it sits cleanly on any of our colours.</p></div>
+      <div class="card"><h4>SVG</h4><p class="s">For printers, merch and anything big. Being drawn up now. Until then, ask ByDeesign for print files rather than enlarging the PNG.</p></div>
+      <div class="card"><h4>Never</h4><p class="s">A screenshot, a JPEG with a white box round it, or a copy saved from Instagram. If it looks fuzzy or boxy, download it again from here.</p></div>
+    </div>
+
+    <div class="grid rules">
+      <div class="card">
+        <h4>Give it room</h4>
+        <div class="room-box"><div class="inner"><img src="/brand/assets/dip-logo-black.png" alt=""></div></div>
+        <p class="s">Keep clear space all the way round, at least the height of the THE tape. No text, edges or other drawings inside it.</p>
+      </div>
+      <div class="card">
+        <h4>Not too small</h4>
+        <div class="size-demo">
+          <div><img src="/brand/assets/dip-logo-black.png" style="width:190px" alt="">Good</div>
+          <div><img src="/brand/assets/dip-logo-black.png" style="width:120px" alt="">Smallest<br>120px · 35mm</div>
+          <div><img src="/brand/assets/dip-icon-black.png" style="width:60px" alt="">Below that<br>use The DIP</div>
+        </div>
+        <p class="s">The full logo goes no smaller than 120px wide on screen or 35mm in print. Below that the crow turns into a blob, so switch to The DIP (smallest 60px or 15mm).</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Please don’t</h3>
+    <div class="grid donts">
+      <div class="card dont"><div class="pic" style="background:var(--parch);border-bottom:1px solid var(--line)"><img src="/brand/assets/dip-logo-black.png" style="transform:scaleX(1.4) scaleY(.7)" alt=""></div><p><b>Stretch or squash it</b>Resize from the corner so the crow keeps its shape.</p></div>
+      <div class="card dont"><div class="pic" style="background:var(--yew)"><img src="/brand/assets/dip-logo-black.png" alt=""></div><p><b>Black on dark</b>On Yew Green, Ink or a dark photo, use the reversed file.</p></div>
+      <div class="card dont"><div class="pic" style="background:var(--parch);border-bottom:1px solid var(--line)"><img src="/brand/assets/dip-logo-black.png" style="filter:sepia(1) saturate(6) hue-rotate(-30deg);opacity:.8" alt=""></div><p><b>Recolour the crow</b>Black or Parchment only. The crow is never rose, green or gold.</p></div>
+      <div class="card dont"><div class="pic" style="background:var(--parch);border-bottom:1px solid var(--line)"><div style="font-family:Arial,sans-serif;font-weight:700;font-size:28px;line-height:1.05;text-align:center">The Dead<br>Ideas Project</div></div><p><b>Type it out</b>Never rebuild it in another font or drop the crow. Always use the file.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKS -->
+<section id="marks">
+  <div class="wrap">
+    <div class="eyebrow"><b>02</b>Marks and details</div>
+    <h2 class="big">the little<span class="it">graveyard bits.</span></h2>
+    <p class="lede">The pieces that make a header feel like ours: the arch, a strip of tape, a brushy underline, a shoot coming through. Use them lightly, one or two per piece, never all at once.</p>
+    <div class="grid details">
+      <div class="card"><div class="art" style="background:var(--parch)"><div class="arch-demo"></div></div><h4>The arch</h4><p class="s">A thin headstone outline. Frames the crow in the logo and can frame a drawing or an epitaph line. Hairline only, never filled with a heavy colour.</p></div>
+      <div class="card"><div class="art" style="background:var(--paper);border:1px solid var(--line)"><span class="tape">notes from the morgue</span></div><h4>The tape</h4><p class="s">Torn Lichen tape with a word or two in marker. Labels a section: Essays, Notes from the Morgue, Obsolete Concepts, Epitaphs.</p></div>
+      <div class="card"><div class="art" style="background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;align-items:stretch"><i class="underline" style="width:100%;background:var(--lichen)"></i><i class="underline" style="width:100%;background:var(--shoot)"></i><i class="underline" style="width:100%;background:var(--rose)"></i></div><h4>The brush stroke</h4><p class="s">One dry brush line under or between the headline and the script line. Lichen, New Shoot or Dried Rose. One per piece.</p><div class="dl-row"><button class="btn sm ghost" data-stroke="lichen">PNG · Lichen</button><button class="btn sm ghost" data-stroke="shoot">New Shoot</button><button class="btn sm ghost" data-stroke="rose">Dried Rose</button></div></div>
+      <div class="card"><div class="art" style="background:var(--paper);border:1px solid var(--line)"><img src="/brand/assets/signoff.png" alt="half thoughts and noble nonsense. @deadideasproject" style="width:86%"></div><h4>The sign-off</h4><p class="s">“half thoughts and noble nonsense.” with @DEADIDEASPROJECT underneath, centred at the bottom of every header.</p><div class="dl-row"><button class="btn sm ghost" data-signoff="ink">PNG · Black</button><button class="btn sm ghost" data-signoff="parch">PNG · Parchment</button></div></div>
+      <div class="card"><div class="art" style="background:var(--paper);border:1px solid var(--line)"><img src="/brand/assets/dip-icon-black.png" alt="" style="height:130px;width:auto"></div><h4>The DIP on top</h4><p class="s">Small and centred at the top of a header, like a letterhead. It tells people whose post it is before they read a word.</p></div>
+      <div class="card"><div class="art" style="background:var(--paper);border:1px solid var(--line);padding:0"><img src="/brand/assets/ill-notebooks.png" alt="" style="width:88%"></div><h4>Shoots and ribbons</h4><p class="s">Every drawing has a little life in it: a sage shoot, and sometimes one red bookmark ribbon. That’s the only red in a drawing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOUR -->
+<section id="colour">
+  <div class="wrap">
+    <div class="eyebrow"><b>03</b>Colour</div>
+    <h2 class="big">graveyard,<span class="it">but warm.</span></h2>
+    <p class="lede">Ink and Paper do most of the work, with Parchment for softer pieces and Yew Green when we go dark. Lichen, New Shoot and Dried Rose are accents: the tape, the brush stroke, a shoot. Tap any code to copy it. Print codes are a starting point, so always ask the printer for a proof.</p>
+    <div class="grid swatches" id="swatches"></div>
+
+    <h3 class="sub">How much of each</h3>
+    <p>A rough recipe for a header, post or page. Lots of pale space, black type doing the talking, and one accent showing up once.</p>
+    <div class="ratio" id="ratio"></div>
+
+    <h3 class="sub">Which stroke, when</h3>
+    <p>The brush stroke is where the colour lives. Pick it by the mood of the post.</p>
+    <div class="grid strokes">
+      <div class="card"><div><h4>Yes. No. Maybe.</h4><i class="underline" style="background:var(--lichen)"></i></div><p class="s"><b>Lichen</b> is the everyday one. Gentle, thinking-out-loud posts.</p></div>
+      <div class="card"><div><h4>What makes an idea worth recording?</h4><i class="underline" style="background:var(--shoot)"></i></div><p class="s"><b>New Shoot</b> is for ideas coming back to life, invitations and anything hopeful.</p></div>
+      <div class="card"><div><h4>How many is too many</h4><i class="underline" style="background:var(--rose)"></i></div><p class="s"><b>Dried Rose</b> is for the sharper ones: frustration, honesty, a bit of swearing.</p></div>
+    </div>
+
+    <h3 class="sub">Pairings that work</h3>
+    <p>Checked for readability, not guessed. Ink reads on every light colour; Parchment reads on Yew Green, Ink and Dried Rose.</p>
+    <div class="grid pairs" id="pairs"></div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section id="type">
+  <div class="wrap">
+    <div class="eyebrow"><b>04</b>Type</div>
+    <h2 class="big">three fonts,<span class="it">three jobs.</span></h2>
+    <p class="lede">League Gothic says the thing. Soli Px mutters the aside. Canva Sans explains. Pick the font by the job the words are doing.</p>
+    <div class="grid typefaces">
+      <div class="card face"><span class="pill" style="background:var(--shoot)">Headlines</span><div class="aa" style="font-family:var(--head)">Aa</div><h3>League Gothic</h3><p class="s" style="margin-bottom:14px">Headlines, big and tall. Sentence case, tight lines, a full stop or question mark on the end.</p><div class="glyphs" style="font-family:var(--head);font-size:28px">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr 0123456789</div></div>
+      <div class="card face"><span class="pill" style="background:var(--lichen)">The aside</span><div class="aa" style="font-family:var(--script);font-weight:600">Aa</div><h3 style="font-family:var(--script);font-weight:700;font-size:44px">Soli Px</h3><p class="s" style="margin:6px 0 14px">The second voice: the line under the headline, the sign-off, words on tape. Lower case, one short line.</p><div class="glyphs" style="font-family:var(--script);font-size:26px;font-weight:500">aa bb cc dd ee ff gg hh ii jj kk ll mm 0123456789</div></div>
+      <div class="card face"><span class="pill" style="background:#e3dcd5">Information</span><div class="aa" style="font-family:var(--body)">Aa</div><h3 style="font-family:var(--body);font-size:28px;font-weight:600">Canva Sans</h3><p class="s" style="margin-bottom:14px">Body copy, captions, the @handle, dates, prices and anything with facts in it.</p><div class="glyphs" style="font-family:var(--body)">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm 0123456789</div></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:12px">If Soli Px and Canva Sans aren’t installed on your device, this page and the header maker show close stand-ins (Caveat and Work Sans). In Canva, always use the real ones.</p>
+    <div class="scale">
+      <div class="row"><span class="l">Display</span><span style="font-family:var(--head);font-size:88px;line-height:.88">No business plan needed.<span class="it" style="font-size:36px;color:var(--ink);margin-top:6px">half thoughts and noble nonsense.</span></span><small>League Gothic · 90–200px<br>With a Soli Px aside at roughly a third of the size</small></div>
+      <div class="row"><span class="l">Heading</span><span style="font-family:var(--head);font-size:48px;line-height:.95">Why being adventurous is coming back to bite me</span><small>League Gothic · 40–80px<br>Post titles, section heads</small></div>
+      <div class="row"><span class="l">Aside</span><span style="font-family:var(--script);font-weight:600;font-size:32px">is it social pressure or overcorrecting?</span><small>Soli Px · 24–60px<br>One line. Never a paragraph.</small></div>
+      <div class="row"><span class="l">Label</span><span class="lbl" style="font-size:14px;letter-spacing:.14em">@deadideasproject &nbsp;·&nbsp; Notes from the Morgue</span><small>Canva Sans semibold, capitals · 11–16px<br>Handles, labels, buttons</small></div>
+      <div class="row"><span class="l">Body</span><span style="font-size:17px">Most people have a graveyard of ideas they’ve never mentioned to anyone. We think it’s the most interesting thing about you.</span><small>Canva Sans · 15–18px<br>Anything you read rather than glance at</small></div>
+    </div>
+    <div class="grid type-rules">
+      <div class="card"><h4>Sentence case</h4><p class="s">Headlines read like a thought: “How many is too many”, not “HOW MANY IS TOO MANY”. Capitals are for the logo.</p></div>
+      <div class="card"><h4>One aside</h4><p class="s">One Soli Px line per piece, under or beside the headline. It’s the muttered bit, so keep it short.</p></div>
+      <div class="card"><h4>Stack it tall</h4><p class="s">League Gothic is narrow, so let it run big and tight across two to four lines. Ten words is plenty.</p></div>
+      <div class="card"><h4>No fourth font</h4><p class="s">No extra Canva fonts, no gothic blackletter, no typewriter. The drawings bring the character.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section id="voice" class="dark">
+  <div class="wrap">
+    <div class="eyebrow"><b>05</b>Voice</div>
+    <h2 class="big">like a friend who keeps<span class="it">every notebook she’s ever started.</span></h2>
+    <p class="lede">Graveyard wit, warm not gothic. We think out loud, wander off, come back, and laugh at ourselves on the way. Swearing is allowed when it’s honest, used like punctuation rather than decoration.</p>
+    <div class="traits"><span>Warm</span><span>Funny</span><span>Tangential</span><span>Macabre</span><span>Sweary</span></div>
+    <div class="grid voice-grid">
+      <div>
+        <div class="card">
+          <h4>Say it like this</h4>
+          <div class="sayit">
+            <div class="h">We say</div><div class="h">Not</div>
+            <div class="yes">No business plan needed.</div><div class="no">Turn your ideas into income</div>
+            <div class="yes">Dead ideas, half thoughts, noble nonsense</div><div class="no">Failed projects</div>
+            <div class="yes">Let it go. Let it simmer.</div><div class="no">Cut your losses</div>
+            <div class="yes">A permission slip</div><div class="no">A productivity system</div>
+            <div class="yes">Every idea deserves a moment.</div><div class="no">Find your one winning idea</div>
+            <div class="yes">You might already belong here</div><div class="no">Join our community today!</div>
+          </div>
+        </div>
+        <h3 style="font-size:40px;margin:34px 0 4px">Lines we use</h3>
+        <div class="grid lines">
+          <div class="card" style="background:var(--parch);color:var(--ink)"><span>No business plan needed.<span class="it" style="color:var(--rose)">just a place for your ideas to exist.</span></span></div>
+          <div class="card" style="background:var(--shoot);color:var(--ink)"><span>Every idea deserves a moment.</span></div>
+          <div class="card" style="background:var(--ink)"><span>The graveyard isn’t the end.<span class="it" style="color:var(--shoot)">it’s the archive.</span></span></div>
+          <div class="card" style="background:var(--lichen);color:var(--ink)"><span>Half thoughts and<span class="it">noble nonsense.</span></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="letter">
+          <div class="bar"><b>In our words</b> · the permission slip, from the website</div>
+          <div class="body">
+            <h5>That graveyard is the most interesting thing about you.</h5>
+            <span class="it">the permission slip</span>
+            <p>Most people have a graveyard of ideas they’ve never mentioned to anyone: notebooks half full, voice memos never replayed, ideas crossed out and rewritten on the next page.</p>
+            <p>This isn’t a business start-up resource, productivity advice, or a course that helps you find your one winning idea and execute it. It’s a permission slip.</p>
+            <p style="margin:0">“Collecting dead ideas isn’t a sign of failure. It’s proof you’re creative, curious, and alive.”</p>
+          </div>
+        </div>
+        <div class="card" style="margin-top:20px">
+          <h4>Before it goes out</h4>
+          <p class="s">Does it sound like Daniela talking, not a brand talking? Is there one moment the reader goes “that’s me”? And does it end by naming the pattern, the small nod towards saving your own ideas, rather than just the joke?</p>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-size:40px;margin:56px 0 4px">What we always say about us</h3>
+    <p style="color:#c5d0c2;max-width:640px">Same words every time: Substack, the website, posts and the Journal.</p>
+    <div class="proof">
+      <span><i style="background:var(--shoot)"></i>A home for every idea you’ve ever written down, crossed out, and rewritten on the next page</span>
+      <span><i style="background:var(--lichen)"></i>Four stages: the Graveyard, Purgatory, Resurrection, Reincarnation</span>
+      <span><i style="background:var(--parch)"></i>Essays, Notes from the Morgue, Obsolete Concepts and Epitaphs</span>
+      <span><i style="background:var(--rose)"></i>Everything happens on Substack: free to read, or join the Project</span>
+      <span><i style="background:var(--shoot)"></i>Not a business resource, not productivity advice. A permission slip.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ILLUSTRATION -->
+<section id="illustration">
+  <div class="wrap">
+    <div class="eyebrow"><b>06</b>Illustration</div>
+    <h2 class="big">pen, ink,<span class="it">and a little bit of life.</span></h2>
+    <p class="lede">We don’t use photos. Every post gets an engraved pen-and-ink drawing: one object telling the story, cross-hatched in black, a touch of sage, a shoot growing through it. Tap any drawing to download it with a see-through background.</p>
+    <div class="grid ill-grid" id="ills"></div>
+    <div class="grid img-grid">
+      <div class="card"><h4>Draw this</h4><ul class="okbad ok"><li>Notebooks, journals, letters, signposts, suitcases, benches: things ideas live in</li><li>Fine engraving and cross-hatching, black ink on white</li><li>Muted sage on the odd tape, leaf or label</li><li>A shoot coming through somewhere, always</li><li>One red bookmark ribbon at most</li><li>A patch of soil and ink speckle grounding it</li></ul></div>
+      <div class="card"><h4>Skip this</h4><ul class="okbad bad"><li>Stock photos, or any photo at all</li><li>Skulls, blood, cobwebs and horror-film gothic</li><li>Bright full colour, flat vector or cute cartoon</li><li>People as the hero (a tiny figure in a picture is fine)</li><li>Background scenes or boxes behind the drawing</li><li>Real logos or readable brand names</li></ul></div>
+    </div>
+    <div class="prompt">
+      <div><h4>Making a new one?</h4><code id="promptTxt">Hand-drawn pen-and-ink engraving of [one object that tells the post’s story], fine cross-hatching, black ink on a plain white background, small touches of muted sage green (#a5ab8a), one deep red bookmark ribbon, a small seedling sprouting from it, a patch of soil and ink speckle at the base, no frame, no background scene, no text.</code></div>
+      <button class="btn shoot sm" id="copyPrompt" type="button">Copy prompt</button>
+    </div>
+  </div>
+</section>
+
+<!-- IN USE -->
+<section id="inuse">
+  <div class="wrap">
+    <div class="eyebrow"><b>07</b>In use</div>
+    <h2 class="big">when in doubt,<span class="it">make it look like this.</span></h2>
+    <p class="lede">Real Dead Ideas headers. White or Parchment, The DIP at the top, a tall League Gothic headline with a Soli Px aside, one brush stroke, a drawing on the right, and the sign-off at the bottom. Tap any one to see it bigger.</p>
+    <div class="grid posts" id="posts"></div>
+    <h3 class="sub">Brand board</h3>
+    <p>Logo, colours, fonts and the hook line together on one page.</p>
+    <figure class="board"><img src="/brand/assets/brand-board.jpg" alt="Dead Ideas Project brand board" data-zoom></figure>
+    <h3 class="sub">Made with the header maker</h3>
+    <p>Three pieces laid out by the tool below in seconds.</p>
+    <div class="grid mocks">
+      <div class="mock"><canvas id="m1"></canvas></div>
+      <div class="mock"><canvas id="m2"></canvas></div>
+      <div class="mock"><canvas id="m3"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAKE -->
+<section id="make" class="dark">
+  <div class="wrap">
+    <div class="eyebrow"><b>08</b>Make a header</div>
+    <h2 class="big">what’s the post<span class="it">about?</span></h2>
+    <p class="lede">Type your words and the maker lays them out six ways, using only DIP fonts, colours and drawings. Pick one, tweak it, download it. Works for Substack headers, Instagram, Threads and Stories. It won’t write the words for you.</p>
+
+    <form class="brief" id="brief" autocomplete="off">
+      <h3>Your words</h3>
+      <p class="hint">Only the headline is needed. Everything else is optional.</p>
+      <div class="f"><label>Headline</label><input type="text" id="b_head" maxlength="70" value="Yes. No. Maybe."></div>
+      <div class="f"><label>The aside <span>(optional · the script line)</span></label><input type="text" id="b_script" maxlength="50" value="What was the question again?"></div>
+      <div class="f"><label>Tape label <span>(optional · a section name)</span></label><input type="text" id="b_tape" maxlength="28" list="sections" placeholder="e.g. Notes from the Morgue"><datalist id="sections"><option>Essays</option><option>Notes from the Morgue</option><option>Obsolete Concepts</option><option>Epitaphs</option><option>here lies</option></datalist></div>
+      <div class="f"><label>Format</label><select id="b_fmt"><option value="substack">Substack header 1600×1048</option><option value="post">Instagram or Threads 4:5</option><option value="square">Square 1:1</option><option value="story">Story 9:16</option></select></div>
+      <div class="f full"><label>A sentence <span>(optional)</span></label><textarea id="b_body" maxlength="180" placeholder="A line from the post, if you want one."></textarea></div>
+      <div class="f full"><label>Drawing</label><div class="phpick" id="b_ills"></div></div>
+      <div class="go"><button class="btn shoot" type="submit">Lay it out <svg><use href="#i-arrow"/></svg></button><span style="font-size:13px;color:var(--muted)">You’ll get six layouts to choose from.</span></div>
+    </form>
+
+    <div class="results" id="results">
+      <div class="head"><h3>pick one to <span style="font-family:var(--script);color:var(--shoot)">edit.</span></h3><button class="btn sm ghost" style="border-color:var(--parch);color:var(--parch)" id="shuffle" type="button">Shuffle drawings and colours</button></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+
+    <div class="editor" id="editor">
+      <div class="ed-stage">
+        <canvas id="edCanvas"></canvas>
+        <div class="check" id="check"></div>
+        <div class="ed-bar"><button class="btn sm ghost" id="edBack" type="button">Back to layouts</button><button class="btn sm" id="edDl" type="button">Download PNG</button></div>
+      </div>
+      <div class="ed-panel">
+        <h4>Words</h4>
+        <div class="f"><label>Headline</label><textarea id="e_head" maxlength="70"></textarea></div>
+        <div class="f"><label>The aside</label><input type="text" id="e_script" maxlength="50"></div>
+        <div class="f"><label>Tape label</label><input type="text" id="e_tape" maxlength="28" list="sections"></div>
+        <div class="f"><label>Sentence</label><textarea id="e_body" maxlength="180"></textarea></div>
+        <h4>Layout</h4><div class="seg" id="e_layout"></div>
+        <h4>Background</h4><div class="cols" id="e_bg"></div>
+        <div class="rule">Text colour is picked for you so it always reads.</div>
+        <h4>Brush stroke</h4><div class="cols" id="e_accent"></div>
+        <div class="rule">Only the strokes that show up on this background are offered.</div>
+        <h4>Drawing</h4><div class="phpick" id="e_ills"></div>
+        <h4>Headline size</h4><div class="seg" id="e_size"></div>
+        <h4>Align</h4><div class="seg" id="e_align"></div>
+        <h4>Format</h4><div class="seg" id="e_fmt"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><img src="/brand/assets/dip-icon-reversed.png" alt="The DIP"><span><b>The Dead Ideas Project</b> · Brand guide v0.9 · @deadideasproject · hello@deadideasproject.com</span><span>Brand by ByDeesign</span></div></footer>
+<div class="toast" id="toast"></div>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script>
+const A='/brand/assets/';
+// ---------- data ----------
+const COLS=[
+ {id:'ink',name:'Ink',hex:'#000000',role:'Headlines, the crow, the sign-off. Our text colour.'},
+ {id:'paper',name:'Paper',hex:'#FFFFFF',role:'The everyday header ground. Drawings sit straight on it.'},
+ {id:'parch',name:'Parchment',hex:'#F3EEEA',role:'Softer ground for longer reads, pages and the Journal.'},
+ {id:'yew',name:'Yew Green',hex:'#1F4529',role:'When we go dark. The reversed logo lives here.'},
+ {id:'lichen',name:'Lichen',hex:'#A5AB8A',role:'The tape, the logo underline, the everyday stroke.'},
+ {id:'shoot',name:'New Shoot',hex:'#B5C15B',role:'Hopeful strokes and buttons. Ideas coming back to life.'},
+ {id:'rose',name:'Dried Rose',hex:'#9E4E4E',role:'The sharp one. Strokes on honest posts, never body text.'}
+];
+const C=Object.fromEntries(COLS.map(c=>[c.id,c]));
+const RATIO=[['paper',40],['parch',18],['ink',24],['yew',6],['lichen',5],['shoot',4],['rose',3]];
+const STAGES=[['i.','The Graveyard','let it go.','Ideas fully laid to rest. Celebrated, honoured, released.','ink'],['ii.','Purgatory','let it simmer.','Ideas that need more time, or more information. They’ll wait.','lichen'],['iii.','Resurrection','let it breathe.','Ideas being actively pursued, out here in the daylight.','shoot'],['iv.','Reincarnation','let it fly.','Ideas that need reworking before they live again, in a new form.','rose']];
+const ILLS=[
+ ['signpost','The signpost','Decisions, crossroads, yes no maybe.'],
+ ['suitcase','The suitcase','Adventures, wanderings, ideas that came back round.'],
+ ['scales','The scales','Too many ideas, weighing things up, pressure.'],
+ ['censored','The crossed-out notebook','Censoring ourselves, what’s worth writing down.'],
+ ['bench','The bench','Rest, purgatory, maybe someday, maybe not.'],
+ ['holiday','The holiday plan','Real life getting in the way. Zero bandwidth left.'],
+ ['notebooks','The two notebooks','Questions, beginnings, the Journal itself.']
+];
+const POSTS=[['post-no-business-plan','No business plan needed'],['post-yes-no-maybe','Yes. No. Maybe.'],['post-worth-recording','What makes an idea worth recording?'],['post-how-many','How many is too many'],['post-adventurous','Why being adventurous is coming back to bite me'],['post-school-holidays','School holidays']];
+
+// ---------- helpers ----------
+const $=s=>document.querySelector(s);
+const el=(t,a={},h='')=>{const e=document.createElement(t);for(const k in a)e.setAttribute(k,a[k]);if(h)e.innerHTML=h;return e};
+function lum(h){const r=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(c=>c<=.03928?c/12.92:((c+.055)/1.055)**2.4);return .2126*r[0]+.7152*r[1]+.0722*r[2]}
+function contrast(a,b){const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+function rgb(h){return [1,3,5].map(i=>parseInt(h.substr(i,2),16))}
+function cmyk(h){let [r,g,b]=rgb(h).map(v=>v/255);const k=1-Math.max(r,g,b);if(k>=1)return[0,0,0,100];return[(1-r-k)/(1-k),(1-g-k)/(1-k),(1-b-k)/(1-k),k].map(v=>Math.round(v*100))}
+function bestText(bg){return contrast(bg,C.ink.hex)>=contrast(bg,C.parch.hex)?'ink':'parch'}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800)}
+async function copy(txt,label){try{await navigator.clipboard.writeText(txt);toast('Copied '+(label||txt))}catch(e){toast(label||txt)}}
+function saveBlob(blob,name){const u=URL.createObjectURL(blob);const a=el('a',{href:u,download:name});document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Downloading '+name)}
+function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src})}
+const tintCache={};
+function tint(img,hex){const k=img.src+hex;if(!tintCache[k]){const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const x=c.getContext('2d');x.drawImage(img,0,0);x.globalCompositeOperation='source-in';x.fillStyle=hex;x.fillRect(0,0,c.width,c.height);tintCache[k]=c}return tintCache[k]}
+
+// ---------- stages strip ----------
+STAGES.forEach(([n,t,l,d,c])=>$('#stages').appendChild(el('div',{class:'stage-s'},`<small>${n}</small><h4>${t}</h4><span class="it" style="color:${c==='ink'?'#000':C[c].hex}">${l}</span><p>${d}</p><i class="bar" style="background:${C[c].hex}"></i>`)));
+
+// ---------- logo flips ----------
+const FLIPS=['parch','paper','lichen','shoot','yew','ink'].map(id=>({id,name:C[id].name,bg:C[id].hex,rev:bestText(C[id].hex)==='parch'}));
+FLIPS.forEach((f,i)=>{
+  const b=el('button',{class:'flip'+(i===0?' on':''),title:f.name,'aria-label':f.name,style:'background:'+f.bg});
+  b.onclick=()=>{$('#flips').querySelectorAll('.flip').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#logoStage').style.background=f.bg;$('#stageLogo').src=A+(f.rev?'dip-logo-reversed.png':'dip-logo-black.png')};
+  $('#flips').appendChild(b);
+});
+
+// ---------- colour ----------
+COLS.forEach(c=>{
+  const t=bestText(c.hex),[r,g,b]=rgb(c.hex),[cc,m,y,k]=cmyk(c.hex);
+  const d=el('div',{class:'sw'},`<div class="chip" style="background:${c.hex};color:${C[t].hex}${c.id==='paper'||c.id==='parch'?';box-shadow:inset 0 -1px 0 var(--line)':''}"><em>Tap to copy</em>${c.name}</div>
+  <dl><dt>HEX</dt><dd data-copy="${c.hex}">${c.hex}</dd><dt>RGB</dt><dd data-copy="${r}, ${g}, ${b}">${r} ${g} ${b}</dd><dt>CMYK</dt><dd data-copy="${cc}, ${m}, ${y}, ${k}">${cc} ${m} ${y} ${k}</dd></dl><div class="role">${c.role}</div>`);
+  d.querySelector('.chip').onclick=()=>copy(c.hex);$('#swatches').appendChild(d);
+});
+document.addEventListener('click',e=>{const d=e.target.closest('[data-copy]');if(d)copy(d.dataset.copy)});
+RATIO.forEach(([id,p])=>$('#ratio').appendChild(el('div',{style:`flex:${p};background:${C[id].hex};color:${C[bestText(C[id].hex)].hex}`},p>=6?`${C[id].name}<br>${p}%`:'')));
+const PAIRS=[['paper','ink'],['parch','ink'],['lichen','ink'],['shoot','ink'],['yew','parch'],['ink','parch'],['rose','parch'],['yew','shoot']];
+PAIRS.forEach(([bg,fg])=>{
+  const r=contrast(C[bg].hex,C[fg].hex);const v=r>=4.5?'Any text':r>=3?'Big headlines only':'Avoid';
+  $('#pairs').appendChild(el('div',{class:'pair',style:`background:${C[bg].hex};color:${C[fg].hex}${bg==='paper'||bg==='parch'?';border:1px solid var(--line)':''}`},
+  `<div><h4>${C[fg].name} on ${C[bg].name}</h4><p>Every idea deserves a moment.</p></div><span class="pill verdict">${v} · ${r.toFixed(1)}:1</span>`));
+});
+
+// ---------- marks downloads ----------
+async function strokeFile(id){const m=await loadImg(A+'stroke.png');const W=2000,H=Math.round(W*m.height/m.width*1.6);const c=document.createElement('canvas');c.width=W;c.height=H;c.getContext('2d').drawImage(tint(m,C[id].hex),0,0,W,H);c.toBlob(b=>saveBlob(b,`dip-brush-stroke-${C[id].name.toLowerCase().replace(/\s+/g,'-')}.png`),'image/png')}
+async function signoffFile(id){const m=await loadImg(A+'signoff.png');const s=3;const c=document.createElement('canvas');c.width=m.width*s;c.height=m.height*s;const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(tint(m,C[id].hex),0,0,c.width,c.height);c.toBlob(b=>saveBlob(b,`dip-signoff-${id==='ink'?'black':'parchment'}.png`),'image/png')}
+document.addEventListener('click',e=>{const s=e.target.closest('[data-stroke]');if(s)strokeFile(s.dataset.stroke);const o=e.target.closest('[data-signoff]');if(o)signoffFile(o.dataset.signoff)});
+
+// ---------- illustrations ----------
+ILLS.forEach(([k,n,d],i)=>$('#ills').appendChild(el('div',{class:'card ill'+(i===0?' lead':'')},`<div class="art"><img src="${A}ill-${k}.png" alt="${n}" loading="lazy"></div><div class="txt"><h4>${n}</h4><p>${d}</p><div class="dl-row"><a class="btn sm ghost" href="${A}ill-${k}.png" download="dip-drawing-${k}.png">PNG</a></div></div>`)));
+$('#copyPrompt').onclick=()=>copy($('#promptTxt').textContent,'the prompt');
+
+// ---------- gallery ----------
+POSTS.forEach(([p,n])=>$('#posts').appendChild(el('figure',{},`<img src="${A}${p}.jpg" alt="${n}" data-zoom><figcaption>${n}</figcaption>`)));
+document.addEventListener('click',e=>{const i=e.target.closest('[data-zoom]');if(i){const lb=$('#lightbox');lb.querySelector('img').src=i.src;lb.classList.add('show')}});
+$('#lightbox').onclick=()=>$('#lightbox').classList.remove('show');
+
+// ---------- HEADER ENGINE ----------
+const FMT={substack:[1600,1048,'Substack'],post:[1080,1350,'4:5'],square:[1080,1080,'Square'],story:[1080,1920,'Story']};
+const LAYOUTS=[['header','Classic header'],['centre','Centred'],['epitaph','Epitaph'],['section','Section tape'],['split','Drawing first'],['wordmark','Full logo']];
+const BGS=['paper','parch','yew','ink','lichen'];
+const HEAD='"League Gothic", "Arial Narrow", sans-serif',SCRIPT='"Soli Px", Caveat, cursive',BODY='"Canva Sans", "Work Sans", Arial, sans-serif';
+const IMG={};let MK={};
+ILLS.forEach(([k])=>IMG[k]=loadImg(A+'ill-'+k+'.png'));
+const MARKSRC={iconB:'dip-icon-black.png',iconR:'dip-icon-reversed.png',logoB:'dip-logo-black.png',logoR:'dip-logo-reversed.png',stroke:'stroke.png',signoff:'signoff.png'};
+const MKP={};for(const k in MARKSRC)MKP[k]=loadImg(A+MARKSRC[k]);
+let ILL={};
+function fontsReady(){return Promise.all([document.fonts.ready,...['400 80px "League Gothic"','600 40px Caveat','700 40px Caveat','400 20px "Work Sans"','600 20px "Work Sans"'].map(f=>document.fonts.load(f,'Aa'))]).catch(()=>{})}
+async function assetsReady(){for(const k in IMG)ILL[k]=await IMG[k];for(const k in MKP)MK[k]=await MKP[k]}
+function wrap(ctx,text,maxW){const out=[];String(text||'').split('\n').forEach(par=>{const words=par.split(/\s+/).filter(Boolean);let cur='';for(const w of words){const t=cur?cur+' '+w:w;if(ctx.measureText(t).width>maxW&&cur){out.push(cur);cur=w}else cur=t}if(cur)out.push(cur)});return out}
+function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+function archPath(ctx,x,y,w,h){const r=w/2;ctx.beginPath();ctx.moveTo(x,y+h);ctx.lineTo(x,y+r);ctx.arc(x+r,y+r,r,Math.PI,0);ctx.lineTo(x+w,y+h);ctx.closePath()}
+function contain(ctx,im,x,y,w,h,ay=.5){if(!im)return;const s=Math.min(w/im.width,h/im.height);const iw=im.width*s,ih=im.height*s;ctx.drawImage(im,x+(w-iw)/2,y+(h-ih)*ay,iw,ih);return [iw,ih]}
+function coverImg(ctx,im,x,y,w,h){const s=Math.max(w/im.width,h/im.height);const iw=im.width*s,ih=im.height*s;ctx.drawImage(im,x+(w-iw)/2,y+(h-ih)/2,iw,ih)}
+const LS=(ctx,v)=>{if('letterSpacing' in ctx)ctx.letterSpacing=v};
+function seeded(n){let s=n*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+
+function tapeDraw(ctx,t,x,y,size,o){ // returns [w,h]; x is left (or centre if o.center)
+  ctx.font=`700 ${size}px ${SCRIPT}`;const tw=ctx.measureText(t).width;const pw=tw+size*.9,ph=size*1.15;const px=o.center?x-pw/2:x;
+  if(o.draw!==false){ctx.save();ctx.translate(px+pw/2,y+ph/2);ctx.rotate(-.035);const r=seeded(t.length+3);ctx.beginPath();const pts=[];const n=9;
+    for(let i=0;i<=n;i++)pts.push([-pw/2+pw*i/n,-ph/2+(r()-.5)*ph*.16]);pts.push([pw/2+(r()-.5)*size*.1,0]);for(let i=n;i>=0;i--)pts.push([-pw/2+pw*i/n,ph/2+(r()-.5)*ph*.16]);pts.push([-pw/2+(r()-.5)*size*.1,0]);
+    pts.forEach(([a,b],i)=>i?ctx.lineTo(a,b):ctx.moveTo(a,b));ctx.closePath();ctx.fillStyle=C.lichen.hex;ctx.fill();
+    ctx.fillStyle='#000';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,0,size*.06);ctx.restore()}
+  return [pw,ph];
+}
+function strokeDraw(ctx,x,y,w,hex,W){const m=MK.stroke;if(!m)return 0;const h=Math.max(W*.012,w*.034);ctx.drawImage(tint(m,hex),x,y,w,h);return h}
+function signoff(ctx,W,H,hex,yB){const m=MK.signoff;if(!m)return;const w=Math.min(W*.3,H*.42),h=w*m.height/m.width;ctx.drawImage(tint(m,hex),W/2-w/2,(yB||H-H*.035)-h,w,h)}
+function topIcon(ctx,W,H,dark,y){const im=dark?MK.iconR:MK.iconB;const h=Math.min(W,H)*.15;const w=h*im.width/im.height;ctx.drawImage(im,W/2-w/2,y,w,h);return h}
+
+// text block: tape, headline, aside, stroke, body. returns height
+function block(ctx,d,x,y,w,o){
+  const W=ctx.canvas.width,mul={s:.82,m:1,l:1.18}[d.size||'m'];const center=o.align==='center';const ax=center?x+w/2:x;
+  let hs=Math.min(w*(o.base||.17),(o.cap||9e9))*mul;let L=[],ss,SL=[],bs,BL=[];
+  const meas=()=>{ctx.font=`400 ${hs}px ${HEAD}`;L=wrap(ctx,d.head,w);ss=hs*.36;ctx.font=`600 ${ss}px ${SCRIPT}`;SL=d.script?wrap(ctx,d.script,w):[];bs=Math.max(hs*.15,W*.017);ctx.font=`400 ${bs}px ${BODY}`;BL=d.body&&o.body!==false?wrap(ctx,d.body,w*.92):[];
+    const tp=o.tape&&d.tape?hs*.34*1.15+hs*.22:0;const hh=L.length*hs*.9;const sh=SL.length?hs*.12+SL.length*ss*1.08:0;const st=hs*.2+Math.max(W*.012,w*.034);const bh=BL.length?hs*.16+BL.length*bs*1.45:0;return tp+hh+sh+st+bh};
+  let tot=meas();while((L.length>(o.maxLines||4)||tot>(o.maxH||9e9))&&hs>W*.03){hs*=.94;tot=meas()}
+  if(o.draw===false)return tot;
+  let cy=y;
+  if(o.tape&&d.tape){const ts=hs*.34;tapeDraw(ctx,d.tape,ax,cy,ts,{center});cy+=ts*1.15+hs*.22}
+  ctx.textBaseline='alphabetic';ctx.textAlign=o.align||'left';ctx.fillStyle=o.fg;ctx.font=`400 ${hs}px ${HEAD}`;let maxW=0;
+  L.forEach(l=>{cy+=hs*.9;ctx.fillText(l,ax,cy-hs*.06);maxW=Math.max(maxW,ctx.measureText(l).width)});
+  if(SL.length){cy+=hs*.12;ctx.font=`600 ${ss}px ${SCRIPT}`;ctx.fillStyle=o.scriptCol||o.fg;SL.forEach(l=>{cy+=ss*1.08;ctx.fillText(l,ax,cy-ss*.12);maxW=Math.max(maxW,ctx.measureText(l).width)})}
+  cy+=hs*.2;const sw=Math.min(w,Math.max(maxW*1.02,w*.5));cy+=strokeDraw(ctx,center?x+(w-sw)/2:x,cy-hs*.05,sw,o.acc,W);
+  if(BL.length){cy+=hs*.16;ctx.font=`400 ${bs}px ${BODY}`;ctx.fillStyle=o.fg;BL.forEach(l=>{cy+=bs*1.45;ctx.fillText(l,ax,cy-bs*.3)})}
+  return cy-y;
+}
+function accentsFor(bg){return bg==='yew'?['shoot','lichen']:bg==='ink'?['shoot','lichen','rose']:bg==='lichen'?['rose','ink','parch']:['lichen','shoot','rose']}
+function strokeHex(id){return C[id].hex}
+// drawing: transparent PNG on light; on dark, inside a parchment arch
+function drawing(ctx,d,x,y,w,h,dark,ay=.5){
+  const im=d.upload||ILL[d.ill];if(!im)return;
+  if(d.upload){ctx.save();const aw=Math.min(w,h*.78),ah=Math.min(h,aw*1.28);const ax=x+(w-aw)/2,ayy=y+(h-ah)*ay;archPath(ctx,ax,ayy,aw,ah);ctx.clip();coverImg(ctx,im,ax,ayy,aw,ah);ctx.restore();ctx.lineWidth=Math.max(2,ctx.canvas.width*.0018);ctx.strokeStyle=dark?C.parch.hex:'#000';archPath(ctx,ax,ayy,aw,ah);ctx.stroke();return}
+  if(dark){const pad=Math.min(w,h)*.08;const s=Math.min((w-pad*2)/im.width,(h-pad*2.4)/im.height);const iw=im.width*s,ih=im.height*s;const aw=Math.max(iw+pad*2,(ih+pad*2)*.8),ah=ih+pad*2.6;const axx=x+(w-aw)/2,ayy=y+(h-ah)*ay;
+    archPath(ctx,axx,ayy,aw,ah);ctx.fillStyle=C.parch.hex;ctx.fill();ctx.drawImage(im,axx+(aw-iw)/2,ayy+ah-ih-pad*.7,iw,ih);return}
+  contain(ctx,im,x,y,w,h,ay);
+}
+
+function render(cv,d){
+  const [W,H]=FMT[d.fmt];cv.width=W;cv.height=H;const ctx=cv.getContext('2d');const notes=[];
+  const land=W>H*1.15,M=Math.min(W,H),P=M*.08,L=d.layout;
+  const bgHex=C[d.bg].hex,fgId=bestText(bgHex),fg=C[fgId].hex,dark=fgId==='parch';
+  const ok=accentsFor(d.bg);const acc=ok.includes(d.accent)?d.accent:ok[0];
+  if(acc!==d.accent&&d._seen)notes.push(['fix',`Swapped the stroke to ${C[acc].name} so it shows up here.`]);d._seen=1;
+  const accHex=strokeHex(acc);const scriptCol=dark&&acc==='shoot'?C.shoot.hex:fg;
+  ctx.fillStyle=bgHex;ctx.fillRect(0,0,W,H);
+  const signH=Math.min(W*.3,H*.42)*(62/433);const signTop=H-H*.035-signH;
+  const al=d.align;const hasIll=!!(d.upload||d.ill);
+
+  if(L==='header'){
+    const ih=topIcon(ctx,W,H,dark,H*.04);
+    if(land){const top=H*.04+ih+H*.04,bot=signTop-H*.05;const tw=hasIll?W*.5:W-P*2.4;const tx=hasIll?P*1.2:(W-tw)/2;
+      const bh=block(ctx,d,tx,0,tw,{fg,acc:accHex,scriptCol,align:hasIll?al:'center',base:.26,maxH:bot-top,body:true,tape:true,draw:false});
+      block(ctx,d,tx,top+(bot-top-bh)/2,tw,{fg,acc:accHex,scriptCol,align:hasIll?al:'center',base:.26,maxH:bot-top,tape:true});
+      if(hasIll)drawing(ctx,d,W*.56,top-H*.02,W*.4,bot-top+H*.04,dark);}
+    else{let y=H*.04+ih+H*.045;const tw=W-P*2;const maxH=hasIll?(signTop-y)*.5:signTop-y-H*.04;
+      y+=block(ctx,d,P,y,tw,{fg,acc:accHex,scriptCol,align:al,base:.17,maxH,tape:true});
+      if(hasIll)drawing(ctx,d,P,y+H*.03,W-P*2,signTop-y-H*.06,dark,.5);}
+    signoff(ctx,W,H,fg);
+  }
+  else if(L==='centre'){
+    const ih=topIcon(ctx,W,H,dark,H*.04);let y=H*.04+ih+H*.04;const tw=W-P*(land?3:2);
+    const maxH=hasIll?(signTop-y)*(land?.55:.48):signTop-y-H*.05;
+    const bh=block(ctx,d,(W-tw)/2,0,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.14:.17,maxH,maxLines:3,tape:true,draw:false});
+    if(!hasIll)y+=(signTop-y-H*.03-bh)/2;
+    y+=block(ctx,d,(W-tw)/2,y,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.14:.17,maxH,maxLines:3,tape:true});
+    if(hasIll)drawing(ctx,d,P,y+H*.03,W-P*2,signTop-y-H*.07,dark,.5);
+    signoff(ctx,W,H,fg);
+  }
+  else if(L==='epitaph'){
+    const archFill=dark?C.parch.hex:(d.bg==='parch'?C.paper.hex:d.bg==='lichen'?C.parch.hex:C.parch.hex);const ink='#000';
+    const aw=land?Math.min(W*.42,H*.62):W*.74,ah=land?H*.8:Math.min(H*.7,aw*1.5);const ax=(W-aw)/2,ay=Math.max(H*.05,(signTop-H*.03-ah)/2+H*.01);
+    archPath(ctx,ax,ay,aw,ah);ctx.fillStyle=archFill;ctx.fill();ctx.lineWidth=Math.max(2,W*.0018);ctx.strokeStyle=dark?archFill:ink;ctx.stroke();
+    // ground
+    ctx.fillStyle=dark?C.parch.hex:'#000';ctx.fillRect(ax-aw*.08,ay+ah-1,aw*1.16,Math.max(3,W*.003));
+    const iw=aw*.22;const ic=MK.iconB;const ihh=iw*ic.height/ic.width;ctx.drawImage(ic,W/2-iw/2,ay+aw*.17,iw,ihh);
+    const tx=ax+aw*.12,tw=aw*.76;const top=ay+aw*.17+ihh+aw*.05,bot=ay+ah-aw*.08;
+    const dd={...d,body:''};
+    const bh=block(ctx,dd,tx,0,tw,{fg:ink,acc:accHex,align:'center',base:.3,maxH:bot-top,maxLines:4,tape:true,draw:false});
+    block(ctx,dd,tx,top+(bot-top-bh)/2,tw,{fg:ink,acc:accHex,align:'center',base:.3,maxH:bot-top,maxLines:4,tape:true});
+    signoff(ctx,W,H,fg);
+    notes.push(['good','Epitaph layout: the headline goes on the headstone. Try the tape label “here lies”.']);
+  }
+  else if(L==='section'){
+    const dt={...d,tape:d.tape||'Notes from the Morgue'};if(!d.tape)notes.push(['good','Tape label added: “Notes from the Morgue”. Change it or pick another section in the editor.']);
+    const ic=dark?MK.iconR:MK.iconB;const iw=M*.11;ctx.drawImage(ic,W-P-iw,P*.8,iw,iw*ic.height/ic.width);
+    if(land){const tw=hasIll?W*.52:W-P*2.6;const top=P*1.6,bot=signTop-H*.05;
+      const bh=block(ctx,dt,P*1.2,0,tw,{fg,acc:accHex,scriptCol,align:'left',base:.19,maxH:bot-top,tape:true,draw:false});
+      block(ctx,dt,P*1.2,top+(bot-top-bh)/2,tw,{fg,acc:accHex,scriptCol,align:'left',base:.19,maxH:bot-top,tape:true});
+      if(hasIll)drawing(ctx,d,W*.6,H*.26,W*.36,bot-H*.24,dark,1);}
+    else{let y=P*1.6;const tw=W-P*2;y+=block(ctx,dt,P,y,tw,{fg,acc:accHex,scriptCol,align:'left',base:.17,maxH:hasIll?(signTop-y)*.55:signTop-y-H*.04,tape:true});
+      if(hasIll)drawing(ctx,d,W*.3,y+H*.03,W*.62,signTop-y-H*.06,dark,1);}
+    signoff(ctx,W,H,fg);
+  }
+  else if(L==='split'){
+    const ic=dark?MK.iconR:MK.iconB;
+    if(land){if(hasIll)drawing(ctx,d,P*.8,H*.1,W*.42,signTop-H*.12,dark,.5);const tx=hasIll?W*.5:P*1.4,tw=hasIll?W*.44:W-P*2.8;const iw=M*.12;ctx.drawImage(ic,tx,H*.06,iw,iw*ic.height/ic.width);
+      const top=H*.06+iw*ic.height/ic.width+H*.04,bot=signTop-H*.05;const bh=block(ctx,d,tx,0,tw,{fg,acc:accHex,scriptCol,align:al,base:.26,maxH:bot-top,tape:true,draw:false});
+      block(ctx,d,tx,top+(bot-top-bh)/2,tw,{fg,acc:accHex,scriptCol,align:al,base:.26,maxH:bot-top,tape:true});}
+    else{const ih=hasIll?H*.4:0;if(hasIll)drawing(ctx,d,P,H*.05,W-P*2,ih,dark,.6);let y=H*.05+ih+H*.04;const mh=signTop-y-H*.04;
+      const bh=block(ctx,d,P,0,W-P*2,{fg,acc:accHex,scriptCol,align:al,base:.17,maxH:mh,tape:true,draw:false});
+      block(ctx,d,P,y+(mh-bh)/2,W-P*2,{fg,acc:accHex,scriptCol,align:al,base:.17,maxH:mh,tape:true});}
+    signoff(ctx,W,H,fg);
+  }
+  else if(L==='wordmark'){
+    const lg=dark?MK.logoR:MK.logoB;const lw=land?W*.36:W*.66;const lh=lw*lg.height/lg.width;ctx.drawImage(lg,W/2-lw/2,H*.06,lw,lh);
+    let y=H*.06+lh+H*.05;const tw=W-P*(land?4:2);const maxH=hasIll&&!land?(signTop-y)*.5:signTop-y-H*.06;
+    const bh=block(ctx,d,(W-tw)/2,0,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.09:.15,maxH,maxLines:3,draw:false});
+    if(!(hasIll&&!land))y+=(signTop-y-H*.03-bh)/2;
+    y+=block(ctx,d,(W-tw)/2,y,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.09:.15,maxH,maxLines:3});
+    if(hasIll&&!land)drawing(ctx,d,P,y+H*.02,W-P*2,signTop-y-H*.05,dark,.5);
+    const m=MK.signoff;const sw=Math.min(W*.24,H*.3);ctx.drawImage(tint(m,fg),W/2-sw/2,H-H*.035-sw*m.height/m.width,sw,sw*m.height/m.width);
+  }
+  const words=(d.head||'').trim().split(/\s+/).length;
+  notes.unshift(['good',`On brand ✓ · DIP fonts, colours and drawings only · text contrast ${contrast(bgHex,fg).toFixed(1)}:1`]);
+  if(words>10)notes.push(['fix','Headline is over ten words. Can some of it move into the aside or the sentence?']);
+  if(d.head&&d.head.length>6&&d.head===d.head.toUpperCase()&&/[A-Z]/.test(d.head))notes.push(['fix','The headline is all capitals. Our headlines are sentence case; capitals are for the logo.']);
+  if(d.script&&d.script.split(/\s+/).length>8)notes.push(['fix','The aside is getting long. One short muttered line works best.']);
+  if(d.upload)notes.push(['fix','Your own image: we use pen-and-ink drawings, not photos. Fine for a one-off, but a drawing from the set is more on brand.']);
+  return notes;
+}
+
+// ---------- builder UI ----------
+let BASE={},VARS=[],CUR=null,shuffleSeed=0,upload=null,briefIll='signpost';
+function illPicker(box,get,set){box.innerHTML='';
+  ILLS.forEach(([k,n])=>{const b=el('button',{type:'button',title:n,class:get()===k?'on':''},`<img src="${A}ill-${k}.png" alt="${n}">`);b.onclick=()=>{set(k);illPicker(box,get,set)};box.appendChild(b)});
+  const nb=el('button',{type:'button',class:'none'+(get()===''?' on':'')},'No<br>drawing');nb.onclick=()=>{set('');illPicker(box,get,set)};box.appendChild(nb);
+  if(upload){const b=el('button',{type:'button',class:get()==='__up'?'on':''},`<img src="${upload.src}" alt="">`);b.onclick=()=>{set('__up');illPicker(box,get,set)};box.appendChild(b)}
+  const l=el('label',{class:'up'},'Upload<br>your own<input type="file" accept="image/*">');l.querySelector('input').onchange=e=>{const f=e.target.files[0];if(!f)return;const i=new Image();i.onload=()=>{upload=i;set('__up');illPicker(box,get,set)};i.src=URL.createObjectURL(f)};box.appendChild(l)}
+illPicker($('#b_ills'),()=>briefIll,k=>briefIll=k);
+function readBrief(){return{head:$('#b_head').value.trim()||'Your headline here.',script:$('#b_script').value.trim(),tape:$('#b_tape').value.trim(),body:$('#b_body').value.trim(),fmt:$('#b_fmt').value,ill:briefIll==='__up'?'':briefIll,upload:briefIll==='__up'?upload:null,align:'left',size:'m'}}
+const PRESET={header:[['paper','lichen'],['parch','rose'],['paper','shoot']],centre:[['paper','shoot'],['parch','lichen'],['yew','shoot']],epitaph:[['yew','shoot'],['parch','rose'],['ink','lichen']],section:[['parch','lichen'],['paper','rose'],['parch','shoot']],split:[['paper','rose'],['yew','lichen'],['parch','shoot']],wordmark:[['parch','lichen'],['ink','shoot'],['paper','lichen']]};
+function variants(){const keys=ILLS.map(x=>x[0]);return LAYOUTS.map(([L],i)=>{const ps=PRESET[L];const [bg,ac]=ps[shuffleSeed%ps.length];
+  const ill=BASE.upload||!BASE.ill?BASE.ill:(shuffleSeed===0?BASE.ill:keys[(keys.indexOf(BASE.ill)+i+shuffleSeed)%keys.length]);
+  return{...BASE,layout:L,bg,accent:ac,ill,align:L==='header'||L==='section'||L==='split'?'left':'center'}})}
+async function lay(){await fontsReady();await assetsReady();VARS=variants();const t=$('#thumbs');t.innerHTML='';
+  VARS.forEach((d,i)=>{const b=el('button',{class:'thumb',type:'button','aria-label':'Edit '+LAYOUTS[i][1]});const cv=el('canvas');render(cv,d);b.appendChild(cv);b.appendChild(el('span',{},LAYOUTS[i][1]));b.onclick=()=>openEd(i);t.appendChild(b)});
+  $('#results').classList.add('show')}
+$('#brief').onsubmit=async e=>{e.preventDefault();BASE=readBrief();$('#editor').classList.remove('show');await lay();$('#results').scrollIntoView({behavior:'smooth',block:'start'})};
+$('#shuffle').onclick=()=>{shuffleSeed++;lay()};
+
+function seg(box,opts,get,set){box.innerHTML='';opts.forEach(([v,n])=>{const b=el('button',{type:'button',class:get()===v?'on':''},n);b.onclick=()=>{set(v);seg(box,opts,get,set);draw()};box.appendChild(b)})}
+function colPick(box,ids,get,set){box.innerHTML='';ids.forEach(id=>{const b=el('button',{type:'button',title:C[id].name,'aria-label':C[id].name,class:get()===id?'on':'',style:'background:'+C[id].hex});b.onclick=()=>{set(id);colPick(box,ids,get,set);draw()};box.appendChild(b)})}
+function refreshAccents(){const ok=accentsFor(CUR.bg);if(!ok.includes(CUR.accent))CUR.accent=ok[0];colPick($('#e_accent'),ok,()=>CUR.accent,v=>CUR.accent=v)}
+function draw(){refreshAccents();const notes=render($('#edCanvas'),CUR);$('#check').innerHTML=notes.map(([k,m])=>`<div class="${k}">${m}</div>`).join('')}
+function openEd(i){CUR={...VARS[i]};
+  ['head','script','tape','body'].forEach(k=>{const f=$('#e_'+k);f.value=CUR[k]||'';f.oninput=()=>{CUR[k]=f.value;draw()}});
+  seg($('#e_layout'),LAYOUTS,()=>CUR.layout,v=>CUR.layout=v);
+  colPick($('#e_bg'),BGS,()=>CUR.bg,v=>CUR.bg=v);
+  illPicker($('#e_ills'),()=>CUR.upload?'__up':(CUR.ill||''),k=>{if(k==='__up'){CUR.upload=upload;CUR.ill=''}else{CUR.upload=null;CUR.ill=k}draw()});
+  seg($('#e_size'),[['s','Small'],['m','Medium'],['l','Large']],()=>CUR.size,v=>CUR.size=v);
+  seg($('#e_align'),[['left','Left'],['center','Centre']],()=>CUR.align,v=>CUR.align=v);
+  seg($('#e_fmt'),Object.entries(FMT).map(([k,v])=>[k,v[2]]),()=>CUR.fmt,v=>CUR.fmt=v);
+  $('#editor').classList.add('show');draw();$('#editor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('#edBack').onclick=()=>{$('#editor').classList.remove('show');$('#results').scrollIntoView({behavior:'smooth'})};
+$('#edDl').onclick=()=>$('#edCanvas').toBlob(b=>saveBlob(b,'dead-ideas-'+(CUR.head||'header').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)+'.png'),'image/png');
+
+// ---------- in use mockups ----------
+(async function mocks(){await fontsReady();await assetsReady();
+  render($('#m1'),{fmt:'substack',layout:'header',bg:'paper',accent:'shoot',ill:'censored',align:'left',size:'m',head:'Every idea deserves a moment.',script:'even the daft ones.',tape:'',body:''});
+  render($('#m2'),{fmt:'post',layout:'epitaph',bg:'yew',accent:'shoot',ill:'',align:'center',size:'m',head:'The sourdough business',script:'2019 to 2019. much loved.',tape:'here lies',body:''});
+  render($('#m3'),{fmt:'post',layout:'section',bg:'parch',accent:'rose',ill:'bench',align:'left',size:'m',head:'Purgatory is not a punishment.',script:'it’s a waiting room.',tape:'Notes from the Morgue',body:''});
+})();
+</script>
+</body>
+</html>
