@@ -721,7 +721,7 @@ function tapeDraw(ctx,t,x,y,size,o){ // returns [w,h]; x is left (or centre if o
   return [pw,ph];
 }
 function strokeDraw(ctx,x,y,w,hex,W){const m=MK.stroke;if(!m)return 0;const h=Math.max(W*.012,w*.034);ctx.drawImage(tint(m,hex),x,y,w,h);return h}
-function signoff(ctx,W,H,hex,yB){const m=MK.signoff;if(!m)return;const w=Math.min(W*.3,H*.42),h=w*m.height/m.width;ctx.drawImage(tint(m,hex),W/2-w/2,(yB||H-H*.035)-h,w,h)}
+function signoff(ctx,W,H,hex,yB){const m=MK.signoff;if(!m)return;const w=W>H*1.15?Math.min(W*.3,H*.42):Math.min(W*.4,H*.3),h=w*m.height/m.width;ctx.drawImage(tint(m,hex),W/2-w/2,(yB||H-H*.035)-h,w,h)}
 function topIcon(ctx,W,H,dark,y){const im=dark?MK.iconR:MK.iconB;const h=Math.min(W,H)*.15;const w=h*im.width/im.height;ctx.drawImage(im,W/2-w/2,y,w,h);return h}
 
 // text block: tape, headline, aside, stroke, body. returns height
@@ -747,11 +747,31 @@ function strokeHex(id){return C[id].hex}
 function drawing(ctx,d,x,y,w,h,dark,ay=.5){
   const im=d.upload||ILL[d.ill];if(!im)return;
   if(d.upload){ctx.save();const aw=Math.min(w,h*.78),ah=Math.min(h,aw*1.28);const ax=x+(w-aw)/2,ayy=y+(h-ah)*ay;archPath(ctx,ax,ayy,aw,ah);ctx.clip();coverImg(ctx,im,ax,ayy,aw,ah);ctx.restore();ctx.lineWidth=Math.max(2,ctx.canvas.width*.0018);ctx.strokeStyle=dark?C.parch.hex:'#000';archPath(ctx,ax,ayy,aw,ah);ctx.stroke();return}
-  if(dark){const pad=Math.min(w,h)*.08;const s=Math.min((w-pad*2)/im.width,(h-pad*2.4)/im.height);const iw=im.width*s,ih=im.height*s;const aw=Math.max(iw+pad*2,(ih+pad*2)*.8),ah=ih+pad*2.6;const axx=x+(w-aw)/2,ayy=y+(h-ah)*ay;
-    archPath(ctx,axx,ayy,aw,ah);ctx.fillStyle=C.parch.hex;ctx.fill();ctx.drawImage(im,axx+(aw-iw)/2,ayy+ah-ih-pad*.7,iw,ih);return}
+  if(dark){const aw=Math.min(w,h/1.12),pad=aw*.08;const ah=Math.min(h,Math.max(aw*1.12,0));const axx=x+(w-aw)/2,ayy=y+(h-ah)*ay;
+    const s=Math.min((aw-pad*2)/im.width,(ah-aw*.2-pad*1.4)/im.height);const iw=im.width*s,ih=im.height*s;
+    archPath(ctx,axx,ayy,aw,ah);ctx.fillStyle=C.parch.hex;ctx.fill();ctx.drawImage(im,axx+(aw-iw)/2,ayy+ah-ih-pad*.9,iw,ih);return}
   contain(ctx,im,x,y,w,h,ay);
 }
 
+function fitStack(ctx,d,o){const {x,w,top,bot,bo,dark,dAlign='c',first=false,minD=.36,maxD=1,side=true}=o;
+  const bases=[.42,.38,.34,.3,.27,.24,.21,.19,.17,.15,.13,.11];const last=bases[bases.length-1];
+  const im=d.upload||ILL[d.ill];const hasIll=!!im;let ar=d.upload?1.28:(im?im.height/im.width:1);if(dark&&!d.upload)ar=Math.max(1.12,ar*.84+.36);
+  const H=ctx.canvas.height,tot=bot-top,gmin=H*.025;let pick=null;
+  const rat=ctx.canvas.width/H;
+  if(side&&hasIll&&(rat>=1.15||(rat>.85&&ar>.85))){const tw=w*.54,dbw=w*.42;let bs=bases[bases.length-1],th=0;
+    for(const base of bases){th=block(ctx,d,x,0,tw,{...bo,base,maxH:1e9,draw:false});bs=base;if(th<=tot*.88)break}
+    const dh=Math.min(tot,dbw*ar),dw=dh/ar;const left=first||dAlign==='l';const tx=left?x+w-tw:x,dx=left?x:x+w-dw;
+    block(ctx,d,tx,top+(tot-th)/2,tw,{...bo,base:bs,maxH:1e9});drawing(ctx,d,dx+(dbw-dw)/2*0,top+(tot-dh)/2,dw,dh,dark,.5);return}
+
+  for(const base of bases){const th=block(ctx,d,x,0,w,{...bo,base,maxH:1e9,draw:false});
+    if(!hasIll){if(th<=tot*.92||base===last){pick={base,th,dh:0,dw:0};break}continue}
+    const avail=tot-th-gmin;const dw=Math.max(0,Math.min(w*maxD,avail/ar));const dh=dw*ar;
+    if(dh>=Math.min(tot*minD,w*maxD*ar*.96)||base===last){pick={base,th,dh,dw};break}}
+  const gi=hasIll?Math.min(Math.max((tot-pick.th-pick.dh)/3,gmin),H*.07):0;const group=pick.th+pick.dh+gi;let y=top+Math.max(0,(tot-group)/2);
+  const dx=dAlign==='l'?x:dAlign==='r'?x+w-pick.dw:x+(w-pick.dw)/2;
+  const doText=()=>{block(ctx,d,x,y,w,{...bo,base:pick.base,maxH:1e9});y+=pick.th+gi};
+  const doDraw=()=>{if(hasIll&&pick.dh>0){drawing(ctx,d,dx,y,pick.dw,pick.dh,dark,.5);y+=pick.dh+gi}};
+  if(first){doDraw();doText()}else{doText();doDraw()}}
 function render(cv,d){
   const [W,H]=FMT[d.fmt];cv.width=W;cv.height=H;const ctx=cv.getContext('2d');const notes=[];
   const land=W>H*1.15,M=Math.min(W,H),P=M*.08,L=d.layout;
@@ -760,7 +780,7 @@ function render(cv,d){
   if(acc!==d.accent&&d._seen)notes.push(['fix',`Swapped the stroke to ${C[acc].name} so it shows up here.`]);d._seen=1;
   const accHex=strokeHex(acc);const scriptCol=dark&&acc==='shoot'?C.shoot.hex:fg;
   ctx.fillStyle=bgHex;ctx.fillRect(0,0,W,H);
-  const signH=Math.min(W*.3,H*.42)*(62/433);const signTop=H-H*.035-signH;
+  const soW=land?Math.min(W*.3,H*.42):Math.min(W*.4,H*.3);const signH=soW*(62/433);const signTop=H-H*.035-signH;
   const al=d.align;const hasIll=!!(d.upload||d.ill);
 
   if(L==='header'){
@@ -769,31 +789,30 @@ function render(cv,d){
       const bh=block(ctx,d,tx,0,tw,{fg,acc:accHex,scriptCol,align:hasIll?al:'center',base:.26,maxH:bot-top,body:true,tape:true,draw:false});
       block(ctx,d,tx,top+(bot-top-bh)/2,tw,{fg,acc:accHex,scriptCol,align:hasIll?al:'center',base:.26,maxH:bot-top,tape:true});
       if(hasIll)drawing(ctx,d,W*.56,top-H*.02,W*.4,bot-top+H*.04,dark);}
-    else{let y=H*.04+ih+H*.045;const tw=W-P*2;const maxH=hasIll?(signTop-y)*.5:signTop-y-H*.04;
-      y+=block(ctx,d,P,y,tw,{fg,acc:accHex,scriptCol,align:al,base:.17,maxH,tape:true});
-      if(hasIll)drawing(ctx,d,P,y+H*.03,W-P*2,signTop-y-H*.06,dark,.5);}
+    else fitStack(ctx,d,{x:P,w:W-P*2,top:H*.04+ih+H*.035,bot:signTop-H*.025,dark,minD:.38,bo:{fg,acc:accHex,scriptCol,align:al,tape:true}});
     signoff(ctx,W,H,fg);
   }
   else if(L==='centre'){
     const ih=topIcon(ctx,W,H,dark,H*.04);let y=H*.04+ih+H*.04;const tw=W-P*(land?3:2);
-    const maxH=hasIll?(signTop-y)*(land?.55:.48):signTop-y-H*.05;
-    const bh=block(ctx,d,(W-tw)/2,0,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.14:.17,maxH,maxLines:3,tape:true,draw:false});
+    if(!land||hasIll)fitStack(ctx,d,{x:P,w:W-P*2,top:H*.04+ih+H*.035,bot:signTop-H*.025,dark,minD:.36,bo:{fg,acc:accHex,scriptCol,align:'center',tape:true,maxLines:4}});
+    else{const maxH=hasIll?(signTop-y)*.55:signTop-y-H*.05;
+    const bh=block(ctx,d,(W-tw)/2,0,tw,{fg,acc:accHex,scriptCol,align:'center',base:.14,maxH,maxLines:3,tape:true,draw:false});
     if(!hasIll)y+=(signTop-y-H*.03-bh)/2;
-    y+=block(ctx,d,(W-tw)/2,y,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.14:.17,maxH,maxLines:3,tape:true});
-    if(hasIll)drawing(ctx,d,P,y+H*.03,W-P*2,signTop-y-H*.07,dark,.5);
+    y+=block(ctx,d,(W-tw)/2,y,tw,{fg,acc:accHex,scriptCol,align:'center',base:.14,maxH,maxLines:3,tape:true});
+    if(hasIll)drawing(ctx,d,P,y+H*.03,W-P*2,signTop-y-H*.07,dark,.5);}
     signoff(ctx,W,H,fg);
   }
   else if(L==='epitaph'){
     const archFill=dark?C.parch.hex:(d.bg==='parch'?C.paper.hex:d.bg==='lichen'?C.parch.hex:C.parch.hex);const ink='#000';
-    const aw=land?Math.min(W*.42,H*.62):W*.74,ah=land?H*.8:Math.min(H*.7,aw*1.5);const ax=(W-aw)/2,ay=Math.max(H*.05,(signTop-H*.03-ah)/2+H*.01);
+    const aw=land?Math.min(W*.42,H*.62):Math.min(W*.8,(signTop-H*.09)/1.25),ah=land?H*.8:Math.min(signTop-H*.07,aw*(hasIll?1.95:1.7));const ax=(W-aw)/2,ay=land?Math.max(H*.05,(signTop-H*.03-ah)/2+H*.01):Math.max(H*.035,(signTop-ah)/2);
     archPath(ctx,ax,ay,aw,ah);ctx.fillStyle=archFill;ctx.fill();ctx.lineWidth=Math.max(2,W*.0018);ctx.strokeStyle=dark?archFill:ink;ctx.stroke();
-    // ground
     ctx.fillStyle=dark?C.parch.hex:'#000';ctx.fillRect(ax-aw*.08,ay+ah-1,aw*1.16,Math.max(3,W*.003));
-    const iw=aw*.22;const ic=MK.iconB;const ihh=iw*ic.height/ic.width;ctx.drawImage(ic,W/2-iw/2,ay+aw*.17,iw,ihh);
+    const iw=aw*(land?.22:.18);const ic=MK.iconB;const ihh=iw*ic.height/ic.width;ctx.drawImage(ic,W/2-iw/2,ay+aw*.17,iw,ihh);
     const tx=ax+aw*.12,tw=aw*.76;const top=ay+aw*.17+ihh+aw*.05,bot=ay+ah-aw*.08;
     const dd={...d,body:''};
-    const bh=block(ctx,dd,tx,0,tw,{fg:ink,acc:accHex,align:'center',base:.3,maxH:bot-top,maxLines:4,tape:true,draw:false});
-    block(ctx,dd,tx,top+(bot-top-bh)/2,tw,{fg:ink,acc:accHex,align:'center',base:.3,maxH:bot-top,maxLines:4,tape:true});
+    if(land||!hasIll){const bh=block(ctx,dd,tx,0,tw,{fg:ink,acc:accHex,align:'center',base:.3,maxH:bot-top,maxLines:4,tape:true,draw:false});
+      block(ctx,dd,tx,top+(bot-top-bh)/2,tw,{fg:ink,acc:accHex,align:'center',base:.3,maxH:bot-top,maxLines:4,tape:true});}
+    else fitStack(ctx,dd,{x:tx,w:tw,top,bot,dark:false,side:false,minD:.4,bo:{fg:ink,acc:accHex,align:'center',tape:true,maxLines:4}});
     signoff(ctx,W,H,fg);
     notes.push(['good','Epitaph layout: the headline goes on the headstone. Try the tape label “here lies”.']);
   }
@@ -804,8 +823,7 @@ function render(cv,d){
       const bh=block(ctx,dt,P*1.2,0,tw,{fg,acc:accHex,scriptCol,align:'left',base:.19,maxH:bot-top,tape:true,draw:false});
       block(ctx,dt,P*1.2,top+(bot-top-bh)/2,tw,{fg,acc:accHex,scriptCol,align:'left',base:.19,maxH:bot-top,tape:true});
       if(hasIll)drawing(ctx,d,W*.6,H*.26,W*.36,bot-H*.24,dark,1);}
-    else{let y=P*1.6;const tw=W-P*2;y+=block(ctx,dt,P,y,tw,{fg,acc:accHex,scriptCol,align:'left',base:.17,maxH:hasIll?(signTop-y)*.55:signTop-y-H*.04,tape:true});
-      if(hasIll)drawing(ctx,d,W*.3,y+H*.03,W*.62,signTop-y-H*.06,dark,1);}
+    else fitStack(ctx,dt,{x:P,w:W-P*2,top:P*1.5+iw*.2,bot:signTop-H*.025,dark,minD:.36,dAlign:'r',bo:{fg,acc:accHex,scriptCol,align:'left',tape:true}});
     signoff(ctx,W,H,fg);
   }
   else if(L==='split'){
@@ -813,19 +831,17 @@ function render(cv,d){
     if(land){if(hasIll)drawing(ctx,d,P*.8,H*.1,W*.42,signTop-H*.12,dark,.5);const tx=hasIll?W*.5:P*1.4,tw=hasIll?W*.44:W-P*2.8;const iw=M*.12;ctx.drawImage(ic,tx,H*.06,iw,iw*ic.height/ic.width);
       const top=H*.06+iw*ic.height/ic.width+H*.04,bot=signTop-H*.05;const bh=block(ctx,d,tx,0,tw,{fg,acc:accHex,scriptCol,align:al,base:.26,maxH:bot-top,tape:true,draw:false});
       block(ctx,d,tx,top+(bot-top-bh)/2,tw,{fg,acc:accHex,scriptCol,align:al,base:.26,maxH:bot-top,tape:true});}
-    else{const ih=hasIll?H*.4:0;if(hasIll)drawing(ctx,d,P,H*.05,W-P*2,ih,dark,.6);let y=H*.05+ih+H*.04;const mh=signTop-y-H*.04;
-      const bh=block(ctx,d,P,0,W-P*2,{fg,acc:accHex,scriptCol,align:al,base:.17,maxH:mh,tape:true,draw:false});
-      block(ctx,d,P,y+(mh-bh)/2,W-P*2,{fg,acc:accHex,scriptCol,align:al,base:.17,maxH:mh,tape:true});}
+    else{const iw=M*.09;ctx.drawImage(ic,W-P-iw,H*.03,iw,iw*ic.height/ic.width);fitStack(ctx,d,{x:P,w:W-P*2,top:H*.035,bot:signTop-H*.025,dark,minD:.45,first:true,bo:{fg,acc:accHex,scriptCol,align:al,tape:true}});}
     signoff(ctx,W,H,fg);
   }
   else if(L==='wordmark'){
-    const lg=dark?MK.logoR:MK.logoB;const lw=land?W*.36:W*.66;const lh=lw*lg.height/lg.width;ctx.drawImage(lg,W/2-lw/2,H*.06,lw,lh);
-    let y=H*.06+lh+H*.05;const tw=W-P*(land?4:2);const maxH=hasIll&&!land?(signTop-y)*.5:signTop-y-H*.06;
-    const bh=block(ctx,d,(W-tw)/2,0,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.09:.15,maxH,maxLines:3,draw:false});
-    if(!(hasIll&&!land))y+=(signTop-y-H*.03-bh)/2;
-    y+=block(ctx,d,(W-tw)/2,y,tw,{fg,acc:accHex,scriptCol,align:'center',base:land?.09:.15,maxH,maxLines:3});
-    if(hasIll&&!land)drawing(ctx,d,P,y+H*.02,W-P*2,signTop-y-H*.05,dark,.5);
-    const m=MK.signoff;const sw=Math.min(W*.24,H*.3);ctx.drawImage(tint(m,fg),W/2-sw/2,H-H*.035-sw*m.height/m.width,sw,sw*m.height/m.width);
+    const lg=dark?MK.logoR:MK.logoB;const lw=land?W*.36:Math.min(W*.66,H*.2*lg.width/lg.height*(W/H>.9?1.4:1.9));const lh=lw*lg.height/lg.width;ctx.drawImage(lg,W/2-lw/2,H*.05,lw,lh);
+    let y=H*.05+lh+H*.05;const tw=W-P*(land?4:2);
+    if(land&&hasIll)fitStack(ctx,d,{x:P*1.4,w:W-P*2.8,top:y,bot:signTop-H*.025,dark,bo:{fg,acc:accHex,scriptCol,align:'left',maxLines:4}});
+    else if(land){const maxH=signTop-y-H*.06;const bh=block(ctx,d,(W-tw)/2,0,tw,{fg,acc:accHex,scriptCol,align:'center',base:.09,maxH,maxLines:3,draw:false});
+      y+=(signTop-y-H*.03-bh)/2;block(ctx,d,(W-tw)/2,y,tw,{fg,acc:accHex,scriptCol,align:'center',base:.09,maxH,maxLines:3});}
+    else fitStack(ctx,d,{x:P,w:W-P*2,top:y,bot:signTop-H*.025,dark,minD:.34,bo:{fg,acc:accHex,scriptCol,align:'center',maxLines:4}});
+    const m=MK.signoff;const sw=land?Math.min(W*.24,H*.3):Math.min(W*.34,H*.26);ctx.drawImage(tint(m,fg),W/2-sw/2,H-H*.035-sw*m.height/m.width,sw,sw*m.height/m.width);
   }
   const words=(d.head||'').trim().split(/\s+/).length;
   notes.unshift(['good',`On brand ✓ · DIP fonts, colours and drawings only · text contrast ${contrast(bgHex,fg).toFixed(1)}:1`]);
